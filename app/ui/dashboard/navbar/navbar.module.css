@@ -1,0 +1,27 @@
+.container{
+    padding: 20px 30px;
+    background-color: var(--bgSoft);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    align-items: center;
+
+}
+.title{
+    text-transform: capitalize;
+    font-weight: bold;
+    color: var (--textSoft);
+}
+.menu{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icons{
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+}
+
+

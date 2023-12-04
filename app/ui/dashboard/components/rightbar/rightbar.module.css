@@ -1,0 +1,50 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.item{
+    background: linear-gradient(to top, #182237, #253352);
+  padding: 20px 24px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.bgContainer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 50%;
+  }
+  
+  .bg {
+    object-fit: contain;
+    opacity: 0.2;
+  }
+.text{
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   color: var(--text);
+}
+.subtitle{
+    font-size: 12px;
+}
+.desc{
+    font-size: 14px;
+}
+.button{
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    border-radius: 5px;
+    padding: 7px 10px;
+    background-color: #5d57c9;
+    cursor: pointer;
+}

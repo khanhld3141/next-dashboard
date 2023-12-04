@@ -1,0 +1,7 @@
+.container{
+    padding: 8px;
+    font-weight: 500;
+    color: var(--text);
+    border-radius: 5px;
+    cursor: pointer;
+}

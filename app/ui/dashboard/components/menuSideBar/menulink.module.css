@@ -1,0 +1,23 @@
+
+.title{
+    margin-top: 10px;
+    font-weight: 500;
+}
+.subMenu{
+    margin-top: 5px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.item{
+    display: flex;
+    gap: 5px;
+    padding: 12px 20px;
+    border-radius: 10px;
+}
+.active{
+    background-color: #2e374a;
+}
+
+

@@ -1,0 +1,45 @@
+.container{
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.title{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(-text);
+}
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.img{
+    border-radius: 50%;
+    object-fit: cover;
+}
+.status{
+    padding: 5px;
+    border-radius: 5px;
+    color: var(-text);
+}
+.pending{
+    background-color: #f7cb7375;
+}
+  
+.done{
+    background-color: #afd6ee75;
+}
+  
+.cancelled{
+    background-color: #f7737375;
+}
+.table thead td{
+    font-weight: 600;
+}
+.table tbody td{
+    padding: 10px 0px;
+    align-items: center;
+}
