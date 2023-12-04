@@ -5,7 +5,12 @@ import Button from '../../ui/dashboard/components/button/Button'
 import Pagination from '../../ui/dashboard/components/pagination/Pagination'
 import Image from 'next/image'
 import Link from 'next/link'
-const User = () => {
+import { fetchUser } from '../../lib/data'
+import { deleteUser } from '../../lib/action'
+const User = async ({ searchParams }) => {
+  const q = searchParams?.q || ""
+  const page = searchParams?.page || 1
+  const { users, count } = await fetchUser(q, page);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -26,65 +31,42 @@ const User = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className={styles.profile}>
-                <div className={styles.avatar}>
-                  <Image priority className={styles.img} width={40} height={40} src={" https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien-600x600.jpg"} alt="avatar" />
+          {users && users.map(user => (
+            <tr key={user._id}>
+              <td>
+                <div className={styles.profile}>
+                  <div className={styles.avatar}>
+                    <Image priority className={styles.img} width={40} height={40} src={user.img || '/noavatar.png'} alt="avatar" />
+                  </div>
+                  <span className={styles.name}>{user.name}</span>
                 </div>
-                <span className={styles.name}>Dennis Thomas Lula</span>
-              </div>
-            </td>
-            <td>
-              <span>john@gmail.com</span>
-            </td>
-            <td>
-              <span>Oct 29, 2023</span>
-            </td>
-            <td>
-              <span>Client</span>
-            </td>
-            <td>
-              <span>active</span>
-            </td>
-            <td>
-              <div className={styles.action}>
-                <Button text="View" size="15" color="teal" />
-                <Button text="Detail" size="15" color="crimson" />
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className={styles.profile}>
-                <div className={styles.avatar}>
-                  <Image priority className={styles.img} width={40} height={40} src={" https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien-600x600.jpg"} alt="avatar" />
+              </td>
+              <td>
+                <span>{user.email}</span>
+              </td>
+              <td>
+                <span>{user.createdAt?.toString().slice(4, 16)}</span>
+              </td>
+              <td>
+                <span>{user.isAdmin ? 'Admin' : 'Client'}</span>
+              </td>
+              <td>
+                <span>{user.isActive ? 'active' : ''}</span>
+              </td>
+              <td>
+                <div className={styles.action}>
+                  <Link href={`/dashboard/users/${user._id}`}><Button text="View" size="15" color="teal" /></Link>
+                  <form action={deleteUser}>
+                    <input type="hidden" name='id' value={user._id} />
+                    <Button text="Delete" size="15" color="crimson" />
+                  </form>
                 </div>
-                <span className={styles.name}>Dennis Thomas Lula</span>
-              </div>
-            </td>
-            <td>
-              <span>john@gmail.com</span>
-            </td>
-            <td>
-              <span>Oct 29, 2023</span>
-            </td>
-            <td>
-              <span>Client</span>
-            </td>
-            <td>
-              <span>active</span>
-            </td>
-            <td>
-              <div className={styles.action}>
-                <Button text="View" size="15" color="teal" />
-                <Button text="Detail" size="15" color="crimson" />
-              </div>
-            </td>
-          </tr>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   )
 }
